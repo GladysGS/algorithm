@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // 时间复杂度：O(n^2); 空间复杂度：O(1)
+  // 不稳定
+
+  var arr = [34,22,56,34,12,4,25,86,65,36];
+
+  function selectSort(arr) {
+      var arrlen = arr.length;
+      var minindex , t;
+      for (var i = 0; i < arrlen-1; i++){
+          minindex = i;
+          for (var j = i+1; j < arrlen ; j++) {
+              if (arr[j] < arr[minindex]) {
+                  minindex = j;
+              }
+          }
+          t = arr[i];
+          arr[i] = arr[minindex];
+          arr[minindex] = t;
+      }
+
+      return arr;
+  }
+
+  alert(selectSort(arr));
+</script>
+</body>
+</html>

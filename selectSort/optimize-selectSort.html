@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function optimizeSelectSort(arr) {
+      var left, right, min, max, t;
+      left = 0;
+      right = arr.length-1;
+      while(left < right) {
+          min = left;
+          max = right;
+          for (var i = left; i <= right; i++) {
+              if (arr[i] < arr[min]) {
+                  min = i;
+              }
+              if (arr[i] > arr[max]) {
+                  max = i;
+              }
+          }
+          t = arr[min];
+          arr[min] = arr[left];
+          arr[left] = t;
+          // max 可能在left的位置，min可能在right的位置
+          if (max == left) {
+              max = min;
+          }
+          t = arr[max];
+          arr[max] = arr[right];
+          arr[right] = t;
+
+          left++;
+          right--;
+      }
+
+      return arr;
+  }
+
+  var arr = [56,5,32,21,45,33,21,45,7,87];
+  alert(optimizeSelectSort(arr));
+</script>
+</body>
+</html>
