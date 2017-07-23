@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+function QuickSort(arr , low , high) {
+    if (high - low > 1) {
+        var i = low + 1;
+        var j = high - 1;
+        var t;
+        while (i <= j) {
+            for (; i < high && arr[i] < arr[low]; i++);
+            for (; j > low && arr[j] >= arr[low]; j--);
+            if (i < j) {
+                t = arr[i];
+                arr[i] = arr[j];
+                arr[j] = t;
+            }
+        }
+        if (j > low) {
+            t = arr[low];
+            arr[low] = arr[j];
+            arr[j] = t;
+        }
+        if (low != j) {
+            QuickSort (arr, low, j);
+        }
+        if (j+1 != high) {
+            QuickSort (arr, j+1, high);
+        }
+    }
+    return arr;
+}
+
+var arr = [4,53,54,23,12,67,6,34,6,65];
+alert(QuickSort(arr , 0 , arr.length));
+</script>
+</body>
+</html>
