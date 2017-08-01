@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>冒泡排序及其优化</title>
+</head>
+<body>
+<script>
+  // j正着跑
+  function BubbleSort_1(arr, n) {
+      var i, j, t;
+      for (i = 0; i < n; i++) {
+          for (j = i + 1; j < n; j++) {
+              if (arr[i] > arr[j]) {
+                  t = arr[i];
+                  arr[i] = arr[j];
+                  arr[j] = t;
+              }
+          }
+      }
+
+      return arr;
+  }
+
+  // j倒着跑
+  function BubbleSort_2(arr, n) {
+      var i, j, t;
+      for (i = 0; i < n; i++) {
+          for (j = n - 1; j > i; j--) {
+              if (arr[j] < arr[j-1]) {
+                  t = arr[j];
+                  arr[j] = arr[j-1];
+                  arr[j-1] = t;
+              }
+          }
+      }
+
+      return arr;
+  }
+
+  // 优化一：给外层循环加flag
+  function BubbleSort_3(arr, n) {
+      var i, j, t;
+      var flag = true;
+      for (i = 0; i < n && flag; i++) {
+          flag = false;
+          for (j = n - 1; j > i; j--) {
+              if (arr[j] < arr[j-1]) {
+                  t = arr[j];
+                  arr[j] = arr[j-1];
+                  arr[j-1] = t;
+                  flag = true;
+              }
+          }
+      }
+
+      return arr;
+  }
+
+  // 优化二：在给外层循环加flag的前提下再给内层循环加监控
+  function BubbleSort_4(arr, n) {
+      var i, j, t;
+      var flag = true;
+      var m_index = 0 , index = n-1 ;
+      for (i = 0; i <= index && flag; i++) {
+          flag = false;
+          for (j = n - 1; j > i; j--) {
+              if (arr[j] < arr[j-1]) {
+                  t = arr[j];
+                  arr[j] = arr[j-1];
+                  arr[j-1] = t;
+                  flag = true;
+                  m_index = j;
+              }
+          }
+
+          index = m_index;
+      }
+
+      return arr;
+  }
+
+  var arr = [2, 45, 78, 4, 87, 13, 87, 67];
+  var n = arr.length;
+  console.log(BubbleSort_1(arr, n));
+  console.log(BubbleSort_2(arr, n));
+  console.log(BubbleSort_3(arr, n));
+  console.log(BubbleSort_4(arr, n));
+
+</script>
+</body>
+</html>
